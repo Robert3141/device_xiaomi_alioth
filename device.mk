@@ -32,3 +32,29 @@ PRODUCT_COPY_FILES += \
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay 
     
+# Gapps
+ifeq ($(WITH_GAPPS),true)
+     GAPPS_VARIANT := nano
+     GAPPS_PRODUCT_PACKAGES += \
+          ActionsServices \
+          CalendarGoogle \
+          ExchangeGoogle \
+          PixelLauncher \
+          Wallpapers \
+          CalculatorGoogle \
+          CarrierServices \
+          ClockGoogle \
+          Messenger \
+          Photos \
+          TagGoogle \
+          ContactsGoogle \
+          DialerGoogle \
+          KeyboardGoogle \
+          WebViewGoogle
+     GAPPS_FORCE_PACKAGE_OVERRIDES := true
+     GAPPS_FORCE_WEBVIEW_OVERRIDES := true
+     GAPPS_FORCE_MMS_OVERRIDES := true
+     GAPPS_FORCE_MATCHING_DPI := true
+     $(warning "BUILDING WITH GAPPS: $(GAPPS_VARIANT)")
+     $(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
+endif
