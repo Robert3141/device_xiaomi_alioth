@@ -25,9 +25,7 @@ export WITH_GMS=true
 
 # GAPPs
 if [ "$build_gapps" == "yes" ]; then
-    #sed -i "s/$vanilla/$gapps/" $file &>/dev/null
     export WITH_GAPPS=true
-    export TARGET_GAPPS_ARCH=arm64
     logLoc="$logDate_dir/$(date +"%p_%I_%M").log"
     mkdir -p "$logData_dir"
     echo "building GAPPs... logging at $logLoc"
@@ -43,7 +41,6 @@ fi
 
 # Vanilla
 if [ "$build_vanilla" == "yes" ]; then
-    #sed -i "s/$gapps/$vanilla/" $file &>/dev/null
     export WITH_GAPPS=false
     logLoc="$logDate_dir/$(date +"%p_%I_%M").log"
     mkdir -p "$logData_dir"
@@ -56,8 +53,7 @@ if [ "$build_vanilla" == "yes" ]; then
     cd out/target/product/alioth
     cp -v *.img "$vanilla_dir"
     cd $root_dir
-    #sed -i "s/$vanilla/$gapps/" $file &>/dev/null
-
+fi
 #done
 echo "-------DONE-------"
 exit 0
