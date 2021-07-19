@@ -34,9 +34,10 @@ if [ "$build_vanilla" == "yes" ]; then
     logLoc="$logDate_dir/$(date +"%p_%I_%M").log"
     mkdir -p "$logData_dir"
     echo "building Vanilla... logging at $logLoc"
+    curl -s "https://api.telegram.org/bot$API_KEY/sendMessage?chat_id=$CHAT_ID&text='BuildingVanilla...'"
     gnome-terminal --tab --title="Vanilla build log (can be closed)" -- sh -c "sleep 3s && tail -f "$logLoc
     brunch aicp_alioth-userdebug > "$logLoc" || { echo "     build failed"; exit 1; }
-    curl -s "https://api.telegram.org/bot$API_KEY/sendMessage?chat_id=$CHAT_ID&text='VanillaBuilt"
+    curl -s "https://api.telegram.org/bot$API_KEY/sendMessage?chat_id=$CHAT_ID&text='VanillaBuilt'"
     cd $root_dir
     rm -rf "$vanilla_dir"&>/dev/null
     mkdir -p "$vanilla_dir"
@@ -52,9 +53,10 @@ if [ "$build_gapps" == "yes" ]; then
     logLoc="$logDate_dir/$(date +"%p_%I_%M").log"
     mkdir -p "$logData_dir"
     echo "building GAPPs... logging at $logLoc"
+    curl -s "https://api.telegram.org/bot$API_KEY/sendMessage?chat_id=$CHAT_ID&text='BuildingGAPPs'"
     gnome-terminal --tab --title="GAPPS build log (can be closed)" -- sh -c "sleep 3s && tail -f "$logLoc
     brunch aicp_alioth-userdebug > "$logLoc" || { echo "     build failed"; exit 1; }
-    curl -s "https://api.telegram.org/bot$API_KEY/sendMessage?chat_id=$CHAT_ID&text=GAPPsBuilt"
+    curl -s "https://api.telegram.org/bot$API_KEY/sendMessage?chat_id=$CHAT_ID&text='GAPPsBuilt'"
     cd $root_dir
     rm -rf "$gapps_dir"&>/dev/null
     mkdir -p "$gapps_dir"
